@@ -1,11 +1,11 @@
 // MPU-6050 Short Example Sketch
-// By Arduino User JohnChi
-// August 17, 2014
-// Public Domain
+// By Arduino User Hackermen
 #include<Wire.h>
 const int MPU_addr = 0x68; // I2C address of the MPU-6050
 int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ;
 int16_t previousAcX, previousAcY;
+int counter;
+bool crash;
 void setup() {
   Wire.begin();
   Wire.beginTransmission(MPU_addr);
@@ -28,16 +28,30 @@ void loop() {
   GyY = Wire.read() << 8 | Wire.read();
   GyZ = Wire.read() << 8 | Wire.read();
   int forward_change = AcX - previousAcX;
-  check_collision();
-  delay(333);
+  if (counter <= 0)
+  {
+    check_collision();
+  }
+  if (crash)
+  {
+    counter = 5;
+    crash = false;
+  }
+  else
+  {
+    counter--;
+  }
+ 
+  delay(200);
 }
 
 int check_collision() {
-  int16_t threshold = 9000;
+  int16_t threshold = 6000;
   int16_t forward_change = AcX - previousAcX;
   int16_t sideward_change = AcY - previousAcY;
   if (abs(forward_change) >= threshold || abs(sideward_change) >= threshold) {
     Serial.print("Collision Detected\n");
+    crash = true;
     return 1;
   }
 }
