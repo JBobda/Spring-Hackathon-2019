@@ -1,4 +1,4 @@
-import firebase from 'firebase-admin';
+const firebase = require('firebase-admin');
 
 // Initialize Firebase
 const config = {
@@ -10,3 +10,5 @@ const config = {
   messagingSenderId: '310484093274',
 };
 firebase.initializeApp(config);
+
+console.log(firebase);

@@ -4,6 +4,7 @@
   "description": "Code to manage to firebase database",
   "main": "Server_Manager.js",
   "scripts": {
+    "start": "node Server_Manager.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jan Bobda",
