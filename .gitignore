@@ -1,3 +1,4 @@
 /server_manager/node_modules
 /server_manager/firebase_api.json
 /phone_manager/api_key.txt
+.DS_Store
