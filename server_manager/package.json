@@ -1,0 +1,15 @@
+{
+  "name": "server_manager",
+  "version": "1.0.0",
+  "description": "Code to manage to firebase database",
+  "main": "Server_Manager.js",
+  "scripts": {
+    "start": "node Server_Manager.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Bobda",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^7.0.0"
+  }
+}
