@@ -1,4 +1,4 @@
-import firebase from 'firebase-admin';
+const firebase = require('firebase');
 
 // Initialize Firebase
 const config = {
@@ -10,3 +10,17 @@ const config = {
   messagingSenderId: '310484093274',
 };
 firebase.initializeApp(config);
+
+const arduinoResponse = 0;
+const db = firebase.database();
+const ref = db.ref('car_status');
+
+ref.set({
+  status: 0,
+});
+
+if (arduinoResponse === 1) {
+  ref.set({
+    status: 1,
+  });
+}
