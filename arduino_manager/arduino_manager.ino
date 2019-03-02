@@ -7,6 +7,7 @@ int16_t previousAcX, previousAcY;
 int counter;
 bool crash;
 void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
   Wire.begin();
   Wire.beginTransmission(MPU_addr);
   Wire.write(0x6B);  // PWR_MGMT_1 register
@@ -51,6 +52,13 @@ int check_collision() {
   int16_t sideward_change = AcY - previousAcY;
   if (abs(forward_change) >= threshold || abs(sideward_change) >= threshold) {
     Serial.print("Collision Detected\n");
+    for(int i = 0; i < 100; i++){
+    delay(500);
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(100);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(100);
+  }
     crash = true;
     return 1;
   }
