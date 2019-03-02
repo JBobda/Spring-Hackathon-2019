@@ -37,7 +37,7 @@ int check_collision() {
   int16_t forward_change = AcX - previousAcX;
   int16_t sideward_change = AcY - previousAcY;
   if (abs(forward_change) >= threshold || abs(sideward_change) >= threshold) {
-    Serial.print("Collision detected \n");
+    Serial.print("Collision Detected\n");
     return 1;
   }
 }
