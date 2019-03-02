@@ -1,8 +1,5 @@
 const firebase = require('firebase');
-// Require the serialport node module
-const serialport = require('serialport');
-
-const { SerialPort } = serialport;
+const SerialPort = require('serialport');
 
 // Initialize Firebase
 const config = {
@@ -15,22 +12,26 @@ const config = {
 };
 firebase.initializeApp(config);
 
-// Open the port
-const port = new SerialPort('COM17', {
-  baudrate: 9600,
-  parser: serialport.parsers.readline('\n'),
-});
+const { Readline } = SerialPort.parsers;
 
-// Read the port data
-port.on('open', () => {
-  console.log('open');
-  port.on('data', (data) => {
-    console.log(data);
-  });
-});
-
-const arduinoResponse = 0;
+let arduinoResponse = 0;
 firebase.database().ref().child('/truck_status').set(arduinoResponse);
+
+const serialPort = new SerialPort('COM4', {
+  baudRate: 9600,
+});
+
+const parser = new Readline();
+serialPort.pipe(parser);
+parser.on('data', (data) => {
+  arduinoResponse = 1;
+  firebase.database().ref().child('/truck_status').set(arduinoResponse);
+  console.log(`data received: ${data}`);
+});
+
+serialPort.on('open', () => {
+  console.log('Communication is on!');
+});
 
 /*
 while (true) {
