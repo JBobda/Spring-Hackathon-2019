@@ -27,21 +27,16 @@ void loop(){
   Serial.print("AcX = "); Serial.print(AcX);
   Serial.print(" | AcY = "); Serial.print(AcY);
   Serial.print(" | AcZ = "); Serial.print(AcZ);
-  Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
-  Serial.print(" | GyX = "); Serial.print(GyX);
-  Serial.print(" | GyY = "); Serial.print(GyY);
-  Serial.print(" | GyZ = "); Serial.println(GyZ);
   check_collision();
   Serial.print("\n");
   delay(333);
 }
 
 void check_collision(){
-  int16_t threshold = 0;
+  int16_t threshold = 10000;
   int16_t forward_change = AcX - previousAcX;
   int16_t sideward_change = AcY - previousAcY;
   if(forward_change >= threshold || sideward_change >= threshold){
-    //Call function
+    Serial.print("CRASH");
   }
-}
 }
