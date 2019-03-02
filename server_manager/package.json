@@ -1,7 +1,7 @@
 {
   "name": "server_manager",
   "version": "1.0.0",
-  "description": "Code to manage to firebase database",
+  "description": "",
   "main": "Server_Manager.js",
   "scripts": {
     "start": "node Server_Manager.js",
@@ -10,6 +10,7 @@
   "author": "Jan Bobda",
   "license": "MIT",
   "dependencies": {
-    "firebase-admin": "^7.0.0"
+    "firebase": "^5.8.5",
+    "serialport": "^7.1.4"
   }
 }

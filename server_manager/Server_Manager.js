@@ -1,4 +1,5 @@
-const firebase = require('firebase-admin');
+const firebase = require('firebase');
+const SerialPort = require('serialport');
 
 // Initialize Firebase
 const config = {
@@ -11,4 +12,32 @@ const config = {
 };
 firebase.initializeApp(config);
 
-console.log(firebase);
+const { Readline } = SerialPort.parsers;
+
+let arduinoResponse = 0;
+firebase.database().ref().child('/truck_status').set(arduinoResponse);
+
+const serialPort = new SerialPort('COM4', {
+  baudRate: 9600,
+});
+
+const parser = new Readline();
+serialPort.pipe(parser);
+parser.on('data', (data) => {
+  arduinoResponse = 1;
+  firebase.database().ref().child('/truck_status').set(arduinoResponse);
+  console.log(`data received: ${data}`);
+});
+
+serialPort.on('open', () => {
+  console.log('Communication is on!');
+});
+
+/*
+while (true) {
+  checkArduino();
+  if (arduinoResponse === 1) {
+    firebase.database().ref().child('/truck_status').set(arduinoResponse);
+  }
+}
+*/
