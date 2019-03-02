@@ -1,14 +1,17 @@
 const firebase = require('firebase');
 const SerialPort = require('serialport');
+const fs = require('fs');
+
+const obj = JSON.parse(fs.readFileSync('firebase_api.json', 'utf8'));
 
 // Initialize Firebase
 const config = {
-  apiKey: 'AIzaSyAgZeN8OWGl8Iv7ph6J7To6oCXl4rJ7LTc',
-  authDomain: 'fall-2019-hackathon.firebaseapp.com',
-  databaseURL: 'https://fall-2019-hackathon.firebaseio.com',
-  projectId: 'fall-2019-hackathon',
-  storageBucket: 'fall-2019-hackathon.appspot.com',
-  messagingSenderId: '310484093274',
+  apiKey: obj.apiKey,
+  authDomain: obj.authDomain,
+  databaseURL: obj.databaseURL,
+  projectId: obj.projectId,
+  storageBucket: obj.storageBucket,
+  messagingSenderId: obj.messagingSenderId,
 };
 firebase.initializeApp(config);
 
@@ -26,7 +29,7 @@ serialPort.pipe(parser);
 parser.on('data', (data) => {
   arduinoResponse = 1;
   firebase.database().ref().child('/truck_status').set(arduinoResponse);
-  console.log(`data received: ${data}`);
+  console.log(data);
 });
 
 serialPort.on('open', () => {
