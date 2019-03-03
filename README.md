@@ -39,6 +39,7 @@ Upload the arduino files to the arduino uno, start the node server, which is con
 * [**Jan Bobda**](https://github.com/JBobda)
 * [**Garrett Whitehead**](https://github.com/gwhiteheadfayar)
 * [**Vincent Tran**](https://github.com/VincentVTran)
+* [**Brett Helms (Film Maker)**](https://www.youtube.com/user/HelmsStock)
 
 ## License
 
