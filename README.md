@@ -1,5 +1,5 @@
 # Spring-2019-Hackathon-Entry
-The theme of this Hackathon competition was to utilise hardware, either Arduino or Google Home/Echo dot, to improve an existing process or just make something better. We decided to create an automated car crash notification system that senses when a driver has gotten has gotten into an accident and notifies the authorities as soon as possible. This makes it easier on 911 dispatchers who are given a location, and cuts out critical time between the accident, and the arrival of first responders.
+The theme of this Hackathon competition was to utilise hardware, either Arduino or Google Home/Echo dot, to improve an existing process or just make something better. We decided to create an automated car crash notification system that senses when a driver has gotten into an accident and notifies the authorities as soon as possible. This makes it easier on 911 dispatchers who are given a location, and cuts out critical time between the accident, and the arrival of first responders.
 
 ## Getting Started
 
